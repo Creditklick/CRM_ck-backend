@@ -1,0 +1,23 @@
+<!DOCKTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name ="viewport" contains="width=device-with, intial-scale=1.0">
+    <title>login</title>
+</head>
+<body>
+    <h2>login</h2>
+    <form method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+  
+        <button type="submit">Login</button>
+    </form>
+
+    {% if error_message %}
+    <p>{{ error_message }}</p>
+    {% endif %}
+    
+</body>
+</html>

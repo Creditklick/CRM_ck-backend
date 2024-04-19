@@ -1,0 +1,163 @@
+<!DOCKTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name ="viewport" contains="width=device-with, intial-scale=1.0">
+    <title>Search Result</title>
+</head>
+<body>
+   {% comment %} <h1>Search Results</h1>
+    <ol>{% for customer in customers %}
+        <li>Name = {{ customer.Name}} - 
+            ACC No. = {{customer.Account_Number}} - 
+            City = {{customer.City}} - 
+            Phone = {{customer.Phone}} - 
+            Email = {{customer.Email}} - 
+            DOB = {{customer.DOB}}</li>
+        {% endfor %}
+    </ol>
+    <a href="{% url 'searchapp' %}"> Back</a>
+</body>
+</html>  {% endcomment %}
+
+{% comment %} <h2> search results "{ query}" </h2>
+<form action="{% url 'filtersearch' %}" method= "get">
+    <input type="hidden" name="previous_query" value="{{ query }}">
+    {{ form }}
+    <button type="submit">search filter</button>
+</form>
+<ul id="customers">
+    {% for item in customers %}
+    <li>{{item}}</li>
+    {% endfor %}
+</ul> {% endcomment %}
+
+
+
+
+
+
+
+
+
+
+
+
+<h1>search reasults</h1>
+<form method="get">
+    {% csrf_token %}
+    <label for="SteftoNo_query">Stefto Id:</label>
+    <input type="text" id="SteftoNo_query" name="SteftoNo_query" value="{{ request.GET.SteftoNo_query }}">
+
+    <label for="Name_query">Enter Name:</label>
+    <input type="text" id="Name_query" name="Name_query" value="{{ request.GET.Name_query }}">
+
+    <label for="Account_Number_query">Enter Account No:</label>
+    <input type="text" id="Account_Number_query" name="Account_Number_query" value="{{ request.GET.Account_Number_query }}">
+
+    <label for="Phone_Number_query">Enter Phone No:</label>
+    <input type="text" id="Phone_Number_query" name="Phone_Number_query" value="{{ request.GET.Phone_Number_query }}">
+
+    <label for="City_query">Enter City:</label>
+    <input type="text" id="City_query" name="City_query" value="{{ request.GET.City_query }}">
+
+    <button type="submit">search</button>
+</form>
+<table>
+    <thead>
+        <tr>
+            <th>Stefto Id</th>
+            <th>Name</th>
+            <th>ACC No</th>
+            <th>City</th>
+            <th>Phone</th>
+            <th>Email</th>
+            {% comment %} <th>DOB</th> {% endcomment %}
+        </tr>
+    </thead>
+    {% for customer in customers %}
+    <tr>
+        <td>{{customer.SteftoNo}}</td>
+        <td>{{ customer.Name}}</td>
+        <td>{{customer.Account_Number}}</td>
+        <td>{{customer.City}}</td>
+        <td>{{customer.Phone}}</td>
+        <td>{{customer.Email}}</td>
+        {% comment %} <td>{{customer.DOB}}</td> {% endcomment %}
+    </tr>
+        {% endfor %}
+</table>
+ 
+
+
+
+
+
+
+{% comment %} 
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>ACC No</th>
+            <th>City</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>DOB</th>
+        </tr>
+    </thead>
+    {% for customer in customers %}
+    <tr>
+        <td>{{ customer.Name}}</td>
+        <td>{{customer.Account_Number}}</td>
+        <td>{{customer.City}}</td>
+        <td>{{customer.Phone}}</td>
+        <td>{{customer.Email}}</td>
+        <td>{{customer.DOB}}</td>
+    </tr>
+        {% endfor %}
+</table>
+
+
+
+
+    <form method="get">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit">Submit</button>
+    </form>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>ACC No</th>
+            <th>City</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>DOB</th>
+        </tr>
+    </thead>
+    {% for customer in customers %}
+    <tr>
+        <td>{{ customer.Name}}</td>
+        <td>{{customer.Account_Number}}</td>
+        <td>{{customer.City}}</td>
+        <td>{{customer.Phone}}</td>
+        <td>{{customer.Email}}</td>
+        <td>{{customer.DOB}}</td>
+    </tr>
+        {% endfor %}
+</table> {% endcomment %}
+
+
+
+    {% comment %} {% if user.is_authenticated %}
+
+    <a href="{% url 'logout' %}">Logout</a>
+    {% endif %} {% endcomment %}
+
+    <a href="{% url 'searchapp' %}">Reset</a>
+</body>
+</html> 

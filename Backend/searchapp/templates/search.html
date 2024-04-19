@@ -1,0 +1,17 @@
+<!DOCKTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name ="viewport" contains="width=device-with, intial-scale=1.0">
+    <title>search</title>
+</head>
+<body>
+    <h1>Search Here</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
